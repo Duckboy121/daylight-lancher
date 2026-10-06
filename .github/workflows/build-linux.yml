@@ -1,0 +1,58 @@
+name: Build Linux AppImage
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write    
+
+jobs:
+  appimage:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate icons
+        run: npm run icons
+
+      - name: Test launcher and staged client modules
+        run: |
+          npm test
+          node tools/verify-mod-matrix.cjs build/preview-bundled
+
+       
+       
+      - name: Build AppImage
+        run: npm run dist:linux
+
+      - name: Attach AppImage to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="v$(node -p "require('./package.json').version")"
+          fi
+          echo "Attaching Linux assets to $TAG"
+          gh release upload "$TAG" dist/*.AppImage --clobber --repo "$GITHUB_REPOSITORY"
+          if [ -f dist/latest-linux.yml ]; then
+            gh release upload "$TAG" dist/latest-linux.yml --clobber --repo "$GITHUB_REPOSITORY"
+          fi

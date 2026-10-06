@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daylight</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="workspace.css" />
+</head>
+<body>
+  <div class="app">
+     
+    <aside class="rail">
+      <div class="rail-brand" title="Daylight"><span class="brand-sun"></span></div>
+
+      <nav class="rail-nav">
+        <button class="nav-btn active" data-tab="home" data-tip="Home">
+          <span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span>
+        </button>
+        <button class="nav-btn" data-tab="packs" data-tip="Packs">
+          <span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+        </button>
+        <button class="nav-btn" data-tab="mods" data-tip="Mods">
+          <span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 8h-1V6a2 2 0 0 0-2-2h-2.5a1.5 1.5 0 0 0-3 0H8a2 2 0 0 0-2 2v2H5a2 2 0 0 0 0 4h1v4a2 2 0 0 0 2 2h2.5a1.5 1.5 0 0 1 3 0H16a2 2 0 0 0 2-2v-4h1a2 2 0 0 0 0-4Z"/></svg></span>
+        </button>
+        <button class="nav-btn" data-tab="resourcepacks" data-tip="Resource Packs">
+          <span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>
+        </button>
+      </nav>
+
+      <div class="rail-spacer"></div>
+
+      <nav class="rail-nav">
+        <button class="nav-btn" data-tab="settings" data-tip="Settings">
+          <span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.09a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z"/></svg></span>
+        </button>
+      </nav>
+    </aside>
+
+     
+    <div class="content">
+       
+      <header class="topbar">
+        <div class="topbar-brand">
+          <span class="brand-name">DAYLIGHT</span>
+          <span class="brand-tag">CLIENT</span>
+        </div>
+
+        <button id="global-search-open" class="search-trigger" aria-label="Search everything">⌕ <span>Search your universe</span><kbd>Ctrl K</kbd></button>
+        <div class="topbar-right">
+           
+          <div class="acct-switcher">
+            <button id="acct-current" class="acct-current">
+              <img id="acct-avatar" class="acct-avatar" alt="" width="26" height="26" />
+              <span id="acct-name" class="acct-name">Not logged in</span>
+              <span class="acct-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+            </button>
+            <div id="acct-menu" class="acct-menu hidden">
+              <div id="acct-list"></div>
+              <button id="acct-add" class="acct-add">+ Add account</button>
+              <button id="acct-fix" class="acct-add" title="Refresh the Microsoft login token — fixes “Invalid session” in game">⟳ Fix login session</button>
+            </div>
+          </div>
+
+           
+          <div class="win-controls">
+            <button class="win-btn" data-win="minimize" title="Minimize"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+            <button class="win-btn" data-win="maximize" title="Maximize"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2"/></svg></button>
+            <button class="win-btn win-close" data-win="close" title="Close to tray"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+          </div>
+        </div>
+      </header>
+
+      <main class="stage">
+         
+        <section id="tab-home" class="tab-panel active">
+          <div class="home">
+            <div class="home-main">
+              <div class="hero">
+                <div class="hero-glow"></div>
+                <span class="eyebrow">YOUR NEXT SESSION STARTS HERE</span>
+                <h2>Make it your world<span>.</span></h2>
+                <p>Your instances. Your settings. Ready when you are.</p>
+              </div>
+
+              <div id="progress-wrap" class="hidden">
+                <div class="progress-track"><div id="progress-bar"></div></div>
+                <div id="progress-label"></div>
+              </div>
+
+              <div id="session-bar" class="session-bar hidden">
+                <span>Your Microsoft login session has expired — Minecraft will refuse server joins ("Invalid session").</span>
+                <button id="fix-session-btn" class="btn btn-small">Fix login</button>
+              </div>
+
+              <div class="launch-bar">
+                <div class="launch-pack">
+                  <label>READY TO LAUNCH</label>
+                  <strong id="selected-instance-name">Daylight</strong>
+                  <div class="pack-row">
+                    <select id="pack-select" hidden aria-hidden="true"></select>
+                    <button id="restore-packs-home" class="icon-btn" title="Packs missing? Restore them from disk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button>
+                  </div>
+                  <span id="pack-version" class="pack-version"></span>
+                </div>
+                <button id="play-btn" class="btn btn-launch" disabled>LOG IN TO PLAY</button>
+              </div>
+
+              <div class="library-head"><div><span class="eyebrow">WORKSPACE</span><h3>Your instances <span id="instance-count"></span></h3></div><button id="new-instance-home" class="btn btn-small btn-ghost">+ New instance</button></div>
+              <div id="home-instance-grid" class="instance-grid"></div>
+
+              <div class="log-card" id="log-card">
+                <div class="log-head" id="log-head">
+                  <span class="log-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span> Game log
+                  <span class="log-actions">
+                    <button id="log-settings" title="Open settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.09a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z"/></svg></button>
+                    <button id="log-clear" title="Clear log"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+                  </span>
+                </div>
+                <div class="log-body">
+                  <svg class="log-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.6 4.8 2.2 6.4 7 7-4.8.6-6.4 2.2-7 7-.6-4.8-2.2-6.4-7-7 4.8-.6 6.4-2.2 7-7Z"/></svg>
+                  <pre id="log" class="log"></pre>
+                </div>
+              </div>
+            </div>
+
+             
+            <aside class="home-side">
+              <div class="side-head">THE LATEST</div>
+              <div id="update-card" class="info-card update-card">
+                <div class="update-head">
+                  <span id="update-name" class="update-name">Loading…</span>
+                  <span id="update-date" class="update-date"></span>
+                </div>
+                <div id="update-body" class="update-body"></div>
+              </div>
+              <div id="update-pager" class="update-pager hidden">
+                <button id="update-newer" title="Newer">‹</button>
+                <span id="update-count" class="pager-info"></span>
+                <button id="update-older" title="Older">›</button>
+              </div>
+              <div class="side-foot"><span id="app-version-side"></span></div>
+            </aside>
+          </div>
+        </section>
+
+         
+        <section id="tab-packs" class="tab-panel">
+          <div class="page-head">
+            <h2 class="page-title">Instances</h2>
+            <div class="page-head-actions">
+              <button id="import-pack-btn" class="btn btn-small" title="Import a Modrinth .mrpack, a Dawn/CurseForge export, or any modpack .zip">↓ Import modpack</button>
+              <button id="restore-packs-btn" class="btn btn-small btn-ghost" title="Re-read the pack list from disk — use this if packs are missing after a restart">⟳ Restore packs</button>
+            </div>
+          </div>
+          <div id="pack-grid" class="pack-grid"></div>
+        </section>
+
+         
+        <section id="tab-mods" class="tab-panel">
+          <h2 class="page-title">Mods</h2>
+          <div class="mods-packbar">
+            <label for="mods-pack-select">Installing to pack</label>
+            <select id="mods-pack-select"></select>
+            <span id="mods-pack-version" class="pack-version"></span>
+          </div>
+          <div class="mods-toolbar">
+            <input id="mod-search" type="text" placeholder="Browse popular Modrinth mods…" />
+            <button id="mod-search-btn" class="btn btn-small">Search</button>
+            <button id="add-mod-btn" class="btn btn-small btn-ghost">Add mod file(s)</button>
+            <button id="open-mods-btn" class="btn btn-small btn-ghost">Open mods folder</button>
+          </div>
+          <div class="mods-columns">
+            <div class="mods-col">
+              <h3>Search results</h3>
+              <div id="mod-results" class="grid-results"></div>
+              <div id="mod-pager" class="pager hidden"></div>
+            </div>
+            <div class="mods-col">
+              <h3>Installed</h3>
+              <ul id="mod-installed" class="mod-list"></ul>
+            </div>
+          </div>
+        </section>
+
+         
+        <section id="tab-resourcepacks" class="tab-panel">
+          <h2 class="page-title">Resource Packs</h2>
+          <div class="mods-packbar">
+            <label for="rp-pack-select">Installing to pack</label>
+            <select id="rp-pack-select"></select>
+            <span id="rp-pack-version" class="pack-version"></span>
+          </div>
+          <div class="mods-toolbar">
+            <input id="rp-search" type="text" placeholder="Browse popular Modrinth resource packs…" />
+            <button id="rp-search-btn" class="btn btn-small">Search</button>
+            <button id="open-rp-btn" class="btn btn-small btn-ghost">Open resource packs folder</button>
+          </div>
+          <div class="mods-columns">
+            <div class="mods-col">
+              <h3>Search results</h3>
+              <div id="rp-results" class="grid-results"></div>
+              <div id="rp-pager" class="pager hidden"></div>
+            </div>
+            <div class="mods-col">
+              <h3>Installed</h3>
+              <ul id="rp-installed" class="mod-list"></ul>
+            </div>
+          </div>
+        </section>
+
+         
+        <section id="tab-settings" class="tab-panel">
+          <h2 class="page-title">Settings</h2>
+          <div class="setting">
+            <label for="min-ram">Minimum RAM (GB)</label>
+            <input id="min-ram" type="number" min="1" max="32" />
+          </div>
+          <div class="setting">
+            <label for="max-ram">Maximum RAM (GB)</label>
+            <input id="max-ram" type="number" min="1" max="64" />
+          </div>
+          <div class="setting">
+            <label for="java-path">Java path <small>(leave empty — Daylight finds or installs the right Java automatically)</small></label>
+            <input id="java-path" type="text" placeholder="automatic" />
+          </div>
+          <div class="setting">
+            <label for="azure-id">Azure client ID <small>(optional — your own approved Azure app)</small></label>
+            <input id="azure-id" type="text" placeholder="leave empty to use the default login" />
+          </div>
+          <div class="setting-actions">
+            <button id="save-settings" class="btn">Save settings</button>
+            <button id="open-game-dir" class="btn btn-ghost">Open game folder</button>
+            <span id="settings-saved" class="saved-note hidden">Saved</span>
+          </div>
+
+          <div class="setting update-setting">
+            <label>Updates <small id="app-version"></small></label>
+            <div class="update-row">
+              <button id="check-update-btn" class="btn btn-ghost">Check for updates</button>
+              <span id="update-status" class="update-status"></span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="sandbox-badge" class="sandbox-badge hidden" title="This launch is running inside a development sandbox — packs and logins made here are isolated from your normal Daylight install">TEST SANDBOX · separate data</div>
+
+   
+  <dialog id="pack-dialog">
+    <h3>New pack</h3>
+    <input id="new-pack-name" type="text" placeholder="Pack name" maxlength="24" />
+    <select id="new-pack-version"></select>
+    <select id="new-pack-loader"></select>
+    <div id="new-pack-note" class="dialog-note"></div>
+    <div class="dialog-actions">
+      <button id="pack-create-cancel" class="btn btn-ghost btn-small">Cancel</button>
+      <button id="pack-create-ok" class="btn btn-small">Create</button>
+    </div>
+  </dialog>
+
+  <dialog id="instance-dialog" class="instance-dialog" aria-labelledby="instance-dialog-title">
+    <div class="dialog-title"><div><span class="eyebrow">INSTANCE SETTINGS</span><h3 id="instance-dialog-title"></h3></div><button id="instance-close" class="btn btn-small btn-ghost" aria-label="Close settings">✕</button></div>
+    <div id="instance-base-settings"></div>
+    <label for="instance-tags">Tags <small>comma separated · up to 6</small></label><input id="instance-tags" placeholder="Competitive, Survival, Friends" maxlength="155" />
+    <div class="memory-title"><label><input id="instance-memory-override" type="checkbox" /> Custom memory allocation</label><small>Applied on next launch</small></div>
+    <div class="memory-inputs"><label>Minimum GB<input id="instance-min" type="number" min="0.5" step="0.5" /></label><label>Maximum GB<input id="instance-max" type="number" min="0.5" step="0.5" /></label></div>
+    <label for="instance-jvm">JVM flags <small>blank uses Daylight defaults; custom flags replace defaults</small></label>
+    <textarea id="instance-jvm" rows="3" placeholder="-XX:+UseG1GC -XX:MaxGCPauseMillis=50" maxlength="4096"></textarea>
+    <p id="instance-error" class="inline-error" role="alert"></p>
+    <div class="dialog-actions"><button id="instance-art" class="btn btn-ghost btn-small">Change artwork</button><button id="instance-logs" class="btn btn-ghost btn-small">Open logs</button><button id="instance-save" class="btn btn-small">Save changes</button></div>
+  </dialog>
+  <dialog id="global-search-dialog" class="command-dialog" aria-label="Search instances, mods and resource packs">
+    <div class="command-input"><span>⌕</span><input id="global-search" placeholder="Instances, mods, resource packs…" autocomplete="off" aria-label="Search everything" /><button id="global-search-close" class="btn btn-ghost btn-small">Esc</button></div>
+    <div class="command-context" id="search-context"></div>
+    <div id="global-results" class="command-results" aria-live="polite"></div>
+    <div class="command-foot">Local files appear instantly · Modrinth results match the selected instance</div>
+  </dialog>
+
+  <script src="workspace.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

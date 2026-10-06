@@ -1,0 +1,86 @@
+{
+  "name": "daylight-launcher",
+  "productName": "Daylight",
+  "version": "2.20.2",
+  "description": "Daylight — custom Minecraft launcher: modpacks, Fabric mods, modules and Microsoft login",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "icons": "node tools/make-icon.js",
+    "dist": "node tools/prepare-bundles.cjs && electron-builder --win nsis --publish never && node tools/copy-update-files.cjs win",
+    "dist:mac": "node tools/prepare-bundles.cjs && electron-builder --mac dmg zip --x64 --arm64 --publish never && node tools/copy-update-files.cjs mac",
+    "dist:linux": "node tools/prepare-bundles.cjs && electron-builder --linux AppImage tar.gz --x64 --publish never && node tools/copy-update-files.cjs linux",
+    "dist:linux:portable": "node tools/prepare-bundles.cjs && electron-builder --linux --x64 --dir --publish never && node tools/pack-linux-portable.cjs",
+    "dist:preview": "node tools/prepare-preview.cjs && electron-builder --config tools/preview-builder.cjs --win nsis --publish never",
+    "test": "node --test tools/test-workspace.js tools/test-install.cjs tools/test-platforms.cjs && node tools/test-mod-catalog.js",
+    "release": "node tools/prepare-bundles.cjs && electron-builder --win nsis --publish always && node tools/publish-release.js"
+  },
+  "author": "Alex",
+  "license": "MIT",
+  "build": {
+    "appId": "gg.daylight.launcher",
+    "productName": "Daylight",
+    "directories": { "output": "dist" },
+    "publish": {
+      "provider": "github",
+      "owner": "Duckboy121",
+      "repo": "daylight-lancher"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "out/release-bundled",
+        "to": "bundled",
+        "filter": ["*.jar"]
+      }
+    ],
+    "afterAllArtifactBuild": "tools/after-build.js",
+    "win": {
+      "target": "nsis",
+      "artifactName": "Daylight Setup ${version}.${ext}",
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.games",
+      "icon": "build/icon.png",
+      "artifactName": "Daylight-${version}-mac-${arch}.${ext}",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "linux": {
+      "target": ["AppImage", "tar.gz"],
+      "executableName": "daylight",
+      "artifactName": "Daylight-${version}-linux-${arch}.${ext}",
+      "icon": "build/icon.png",
+      "category": "Game",
+      "synopsis": "Custom Minecraft launcher: modpacks, Fabric mods, modules and Microsoft login",
+      "desktop": {
+        "entry": {
+          "Name": "Daylight",
+          "Comment": "Custom Minecraft launcher"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9",
+    "minecraft-launcher-core": "^3.18.2",
+    "msmc": "^5.0.5"
+  },
+  "devDependencies": {
+    "electron": "^43.1.0",
+    "electron-builder": "^26.15.3"
+  }
+}

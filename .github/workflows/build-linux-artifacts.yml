@@ -1,0 +1,27 @@
+name: Build Linux update (artifacts only)
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: node tools/verify-mod-matrix.cjs build/preview-bundled
+      - name: Test renderer without touching user profiles
+        run: xvfb-run -a ./node_modules/.bin/electron tools/test-ui.cjs
+      - run: npm run dist:linux
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Daylight-Linux-x64-update
+          path: |
+            dist/*.AppImage
+            dist/*.tar.gz
+            dist/latest-linux.yml
+          if-no-files-found: error
